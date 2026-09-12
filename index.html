@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中秋快乐 · 致我亲爱的家人</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='%23f6e27a'/%3E%3Ccircle cx='38' cy='42' r='7' fill='%23e8cd6a'/%3E%3Ccircle cx='60' cy='60' r='5' fill='%23e8cd6a'/%3E%3Ccircle cx='55' cy='32' r='3' fill='%23e8cd6a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap">
+<style>
+  :root{
+    --night:#181b40;
+    --night-2:#232a5e;
+    --night-3:#2e356f;
+    --ink:#f7efd9;
+    --moon:#f6e27a;
+    --gold:#e3b95c;
+    --cinnabar:#b23a2c;
+    --dim:#b9b3d8;
+    --paper:#faf1dc;
+    --paper-ink:#5a3a2a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Serif SC","Songti SC","SimSun",serif;
+    background:var(--night);
+    color:var(--ink);
+    line-height:1.9;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+
+  /* ========== Hero ========== */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    padding:64px 20px 90px;
+    overflow:hidden;
+  }
+  .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(24,27,64,.55) 0%,rgba(24,27,64,.25) 40%,rgba(24,27,64,.82) 100%);
+  }
+  .hero .inner{position:relative;z-index:2}
+  .hero .lunar{
+    font-size:clamp(15px,2.4vw,20px);
+    letter-spacing:.5em;text-indent:.5em;
+    color:var(--gold);
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-size:clamp(64px,15vw,168px);
+    font-weight:900;
+    letter-spacing:.18em;text-indent:.18em;
+    color:var(--moon);
+    text-shadow:0 6px 40px rgba(246,226,122,.45),0 0 90px rgba(246,226,122,.25);
+    animation:rise 1.6s ease both;
+  }
+  .hero .to{
+    margin-top:26px;
+    font-size:clamp(22px,4vw,34px);
+    font-weight:600;
+    letter-spacing:.3em;text-indent:.3em;
+    animation:rise 1.6s .25s ease both;
+  }
+  .seal{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:clamp(58px,9vw,78px);height:clamp(58px,9vw,78px);
+    margin-top:34px;
+    background:var(--cinnabar);
+    color:#fbeed8;
+    font-size:clamp(24px,4vw,34px);
+    font-weight:700;
+    letter-spacing:.1em;
+    border-radius:10px;
+    box-shadow:0 4px 0 rgba(0,0,0,.25);
+    transform:rotate(-4deg);
+    animation:rise 1.6s .5s ease both;
+  }
+  .scroll-hint{
+    position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+    z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;
+    color:var(--dim);font-size:14px;letter-spacing:.3em;text-indent:.3em;
+  }
+  .scroll-hint i{width:2px;height:34px;background:linear-gradient(180deg,transparent,var(--gold));animation:drop 1.8s ease infinite}
+
+  /* ========== 通用区块 ========== */
+  section{padding:90px 0;position:relative}
+  .sec-head{
+    text-align:center;
+    font-size:clamp(28px,5vw,42px);
+    font-weight:700;
+    color:var(--moon);
+    letter-spacing:.2em;text-indent:.2em;
+    margin-bottom:14px;
+  }
+  .sec-sub{
+    text-align:center;
+    color:var(--dim);
+    font-size:clamp(14px,2.2vw,17px);
+    letter-spacing:.35em;text-indent:.35em;
+    margin-bottom:52px;
+  }
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* ========== 序言 ========== */
+  .prologue .prose{
+    display:flex;flex-direction:column;align-items:center;gap:36px;
+  }
+  .prologue p{
+    font-size:clamp(17px,2.6vw,21px);
+    letter-spacing:.12em;
+    color:var(--ink);
+    text-align:center;
+    max-width:34em;
+  }
+  .prologue .rabbit{
+    width:min(300px,72vw);
+    border-radius:24px;
+    box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 0 1px rgba(246,226,122,.18);
+  }
+
+  /* ========== 家书 ========== */
+  .letter-card{
+    background:var(--paper);
+    color:var(--paper-ink);
+    border-radius:16px;
+    padding:clamp(32px,6vw,64px) clamp(26px,5vw,56px);
+    box-shadow:0 24px 70px rgba(0,0,0,.5);
+    position:relative;
+    line-height:2.1;
+  }
+  .letter-card::before{
+    content:"";position:absolute;inset:14px;
+    border:1px solid rgba(90,58,42,.22);
+    border-radius:10px;
+    pointer-events:none;
+  }
+  .letter-card h3{
+    font-size:clamp(24px,4vw,32px);
+    font-weight:900;
+    letter-spacing:.2em;text-indent:.2em;
+    text-align:center;
+    margin-bottom:26px;
+  }
+  .letter-card .say{
+    font-size:clamp(16px,2.5vw,19px);
+    letter-spacing:.06em;
+    text-align:justify;
+    text-indent:2em;
+  }
+  .letter-card .say.placeholder{
+    color:#8a6a4a;
+  }
+  .letter-card .sign{
+    margin-top:36px;
+    text-align:right;
+    font-size:clamp(16px,2.5vw,19px);
+    letter-spacing:.1em;
+  }
+  .letter-card .sign b{font-size:1.15em;font-weight:900}
+
+  /* ========== 祝福 ========== */
+  .bless-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  }
+  .bless{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(246,226,122,.16);
+    border-radius:14px;
+    padding:30px 12px 26px;
+    text-align:center;
+    transition:transform .35s ease,background .35s ease;
+  }
+  .bless:hover{transform:translateY(-6px);background:rgba(255,255,255,.07)}
+  .bless .char{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:56px;height:56px;
+    background:var(--cinnabar);
+    color:#fbeed8;
+    font-size:26px;font-weight:700;
+    border-radius:10px;
+    transform:rotate(-3deg);
+    margin-bottom:16px;
+  }
+  .bless h4{font-size:19px;font-weight:700;letter-spacing:.15em;color:var(--ink);margin-bottom:8px}
+  .bless p{font-size:14px;color:var(--dim);letter-spacing:.08em}
+
+  /* ========== 祈福孔明灯 ========== */
+  .lantern-stage{
+    position:relative;
+    min-height:340px;
+    text-align:center;
+    padding-top:20px;
+    overflow:hidden;
+  }
+  .lantern-tip{
+    margin-top:18px;
+    font-size:clamp(14px,2.2vw,16px);
+    color:var(--dim);
+    letter-spacing:.15em;
+  }
+  .wish-lantern{
+    position:absolute;bottom:150px;left:50%;
+    width:96px;height:128px;
+    border-radius:48px 48px 40px 40px;
+    background:radial-gradient(circle at 50% 35%,#ffdfa0,#ef9a4a 65%,#c96a2e);
+    box-shadow:0 0 30px rgba(239,154,74,.55);
+    display:flex;align-items:center;justify-content:center;
+    color:#7a3d14;
+    font-size:15px;font-weight:700;
+    letter-spacing:.06em;
+    line-height:1.5;
+    opacity:0;
+    pointer-events:none;
+    animation:stageRise 3.6s ease-out forwards;
+  }
+  .wish-lantern::before{
+    content:"";position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+    width:44px;height:12px;
+    background:radial-gradient(ellipse,#ffe3ad,#d98b3f);
+    border-radius:50%;
+  }
+  .wish-lantern::after{
+    content:"";position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+    width:1px;height:16px;background:rgba(255,255,255,.4);
+  }
+
+  /* ========== 诗词 ========== */
+  .poem{text-align:center;padding:110px 0}
+  .poem .big{
+    font-size:clamp(30px,6vw,52px);
+    font-weight:900;
+    color:var(--moon);
+    letter-spacing:.14em;text-indent:.14em;
+    line-height:1.7;
+    text-shadow:0 0 60px rgba(246,226,122,.3);
+  }
+  .poem .who{
+    margin-top:22px;
+    color:var(--dim);
+    font-size:clamp(14px,2.2vw,17px);
+    letter-spacing:.3em;text-indent:.3em;
+  }
+
+  /* ========== 落款 ========== */
+  .sign-off{text-align:center;padding:40px 0 100px}
+  .sign-off .from{
+    font-size:clamp(22px,4vw,32px);
+    font-weight:700;
+    letter-spacing:.2em;text-indent:.2em;
+  }
+  .sign-off .from b{color:var(--moon);font-weight:900}
+  .sign-off .stamp{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:74px;height:74px;
+    background:var(--cinnabar);
+    color:#fbeed8;
+    font-size:30px;font-weight:900;
+    border-radius:12px;
+    transform:rotate(-6deg);
+    box-shadow:0 5px 0 rgba(0,0,0,.28);
+    margin:30px auto 0;
+  }
+  .sign-off .date{
+    margin-top:28px;
+    color:var(--dim);
+    font-size:clamp(14px,2.2vw,17px);
+    letter-spacing:.25em;text-indent:.25em;
+  }
+  .sign-off .handmade{
+    margin-top:14px;
+    color:var(--gold);
+    font-size:clamp(14px,2.2vw,16px);
+    letter-spacing:.18em;text-indent:.18em;
+  }
+
+  /* ========== 底部孔明灯 ========== */
+  .foot{
+    position:relative;
+    min-height:340px;
+    overflow:hidden;
+    background:linear-gradient(180deg,var(--night) 0%,#0e1030 100%);
+    text-align:center;
+    display:flex;align-items:flex-end;justify-content:center;
+    padding-bottom:44px;
+  }
+  .lantern{
+    position:absolute;bottom:-60px;
+    width:34px;height:46px;
+    border-radius:50% 50% 46% 46%;
+    background:radial-gradient(circle at 50% 40%,#ffd98a,#e8863a 68%,#c05a24);
+    box-shadow:0 0 24px rgba(232,134,58,.55);
+    animation:floaty linear infinite;
+    opacity:0;
+  }
+  .lantern::before{
+    content:"";position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+    width:22px;height:14px;
+    background:radial-gradient(ellipse,#ffe3ad,#d98b3f);
+    border-radius:50%;
+  }
+  .lantern::after{
+    content:"";position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+    width:1px;height:18px;background:rgba(255,255,255,.35);
+  }
+  .foot .last-line{
+    position:relative;z-index:2;
+    font-size:clamp(15px,2.6vw,19px);
+    letter-spacing:.22em;text-indent:.22em;
+    color:var(--ink);
+  }
+
+  /* ========== 按钮与提示 ========== */
+  .wish-btn{
+    display:inline-block;
+    margin-top:38px;
+    padding:16px 44px;
+    font-family:inherit;
+    font-size:clamp(16px,2.4vw,19px);
+    letter-spacing:.18em;text-indent:.18em;
+    color:#fbeed8;
+    background:linear-gradient(180deg,#c94a38,#a43324);
+    border:none;border-radius:999px;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(178,58,44,.35);
+    transition:transform .3s ease,box-shadow .3s ease;
+  }
+  .wish-btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(178,58,44,.5)}
+  .wish-btn:active{transform:translateY(0)}
+  .toast{
+    position:fixed;left:50%;bottom:44px;transform:translate(-50%,120px);
+    z-index:50;
+    background:var(--paper);color:var(--paper-ink);
+    padding:16px 30px;
+    border-radius:12px;
+    font-size:clamp(15px,2.4vw,18px);
+    letter-spacing:.1em;
+    box-shadow:0 16px 50px rgba(0,0,0,.5);
+    transition:transform .5s cubic-bezier(.2,.9,.3,1.2);
+    opacity:0;pointer-events:none;
+  }
+  .toast.show{transform:translate(-50%,0);opacity:1}
+  .rise-lantern{
+    position:fixed;left:50%;bottom:-80px;z-index:49;
+    width:26px;height:36px;
+    border-radius:50% 50% 46% 46%;
+    background:radial-gradient(circle at 50% 40%,#ffd98a,#e8863a 68%,#c05a24);
+    box-shadow:0 0 20px rgba(232,134,58,.6);
+    opacity:0;pointer-events:none;
+  }
+  .rise-lantern.go{animation:riseL 2.2s ease-out both}
+
+  /* ========== 动画 ========== */
+  @keyframes rise{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+  @keyframes drop{0%{opacity:0;transform:translateY(-8px)}50%{opacity:1}100%{opacity:0;transform:translateY(22px)}}
+  @keyframes floaty{
+    0%{transform:translateY(0) translateX(0) rotate(-2deg);opacity:0}
+    8%{opacity:.9}
+    50%{opacity:.8}
+    92%{opacity:.4}
+    100%{transform:translateY(-520px) translateX(30px) rotate(3deg);opacity:0}
+  }
+  @keyframes riseL{
+    0%{transform:translate(-50%,0);opacity:0}
+    15%{opacity:1}
+    100%{transform:translate(-50%,-70vh);opacity:0}
+  }
+  @keyframes stageRise{
+    0%{transform:translateX(-50%) translateY(0) rotate(-2deg);opacity:0}
+    12%{opacity:1}
+    100%{transform:translateX(calc(-50% + 70px)) translateY(-430px) rotate(3deg);opacity:0}
+  }
+
+  @media (max-width:720px){
+    .bless-grid{grid-template-columns:repeat(2,1fr)}
+    section{padding:70px 0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ========== 首屏：月圆中秋 ========== -->
+  <header class="hero">
+    <img class="hero-bg" src="assets/hero.jpg" alt="玉兔与圆月">
+    <div class="inner">
+      <p class="lunar">农历八月十五 · 丙午年</p>
+      <h1>中秋快乐</h1>
+      <p class="to">致 亲爱的家人</p>
+      <span class="seal">团圆</span>
+    </div>
+    <div class="scroll-hint"><span>慢慢往下看</span><i></i></div>
+  </header>
+
+  <!-- ========== 序言 ========== -->
+  <section class="prologue">
+    <div class="wrap">
+      <div class="prose reveal">
+        <p>见字如面。<br>
+        今夜的月亮又圆了，<br>
+        想说的话，都装在这份小心意里，<br>
+        请您慢慢看。</p>
+        <img class="rabbit" src="assets/rabbit.jpg" alt="玉兔捧月饼">
+        <p>无论相隔多远，<br>
+        今晚我们抬头，看的是同一个月亮。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 家书 ========== -->
+  <section>
+    <div class="wrap">
+      <h2 class="sec-head reveal">一封家书</h2>
+      <p class="sec-sub reveal">想对您说的话，都在这里</p>
+      <div class="letter-card reveal">
+        <h3>致 我最亲爱的家人</h3>
+        <p class="say" id="letterSay">
+          亲爱的爷爷奶奶、爸爸妈妈、妹妹：<br><br>
+          又到中秋了。小时候总盼着吃月饼、点灯笼，现在才明白，最好的味道是团圆。<br><br>
+          爷爷奶奶，天凉了记得添衣添被，走路慢一点，好好保重身体；爸爸妈妈，别舍不得吃穿，多歇一歇；妹妹，好好学习，天天向上，我们都在背后给你加油。<br><br>
+          月圆了，心也就圆了。祝我们一家人，年年有今朝，岁岁常相见。
+        </p>
+        <p class="sign">—— 爱你们的 <b id="signName">浩然</b></p>
+      </div>
+      <div style="text-align:center">
+        <button class="wish-btn" id="wishBtn">点一下，收下我的心意</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 祝福 ========== -->
+  <section>
+    <div class="wrap">
+      <h2 class="sec-head reveal">四时祝福</h2>
+      <p class="sec-sub reveal">愿这份心意，替我说出所有牵挂</p>
+      <div class="bless-grid reveal">
+        <div class="bless">
+          <span class="char">康</span>
+          <h4>身体健康</h4>
+          <p>愿您吃得香、睡得好，身子骨硬朗</p>
+        </div>
+        <div class="bless">
+          <span class="char">圆</span>
+          <h4>阖家团圆</h4>
+          <p>愿一家人常聚常欢，笑声不断</p>
+        </div>
+        <div class="bless">
+          <span class="char">安</span>
+          <h4>平安喜乐</h4>
+          <p>愿岁岁平安，心里常有喜乐</p>
+        </div>
+        <div class="bless">
+          <span class="char">顺</span>
+          <h4>事事如意</h4>
+          <p>愿凡事顺心，日子越过越红火</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 祈福：孔明灯 ========== -->
+  <section>
+    <div class="wrap">
+      <h2 class="sec-head reveal">放一盏孔明灯</h2>
+      <p class="sec-sub reveal">把祝福点上天，让月亮替我们捎到</p>
+      <div class="lantern-stage reveal" id="lanternStage">
+        <button class="wish-btn" id="lanternBtn">为家人放一盏灯</button>
+        <p class="lantern-tip">每点一次，就有一盏装着祝福的灯升起来</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 诗词 ========== -->
+  <section class="poem">
+    <div class="wrap reveal">
+      <p class="big">但愿人长久<br>千里共婵娟</p>
+      <p class="who">—— 苏轼 《水调歌头》</p>
+    </div>
+  </section>
+
+  <!-- ========== 落款 ========== -->
+  <section class="sign-off">
+    <div class="wrap reveal">
+      <p class="from">爱你们的 <b id="fromName">浩然</b></p>
+      <span class="stamp" id="stampText">中秋</span>
+      <p class="date">二〇二六年 · 农历八月十五（公历 9 月 25 日）</p>
+      <p class="handmade">这一页，是我亲手做出来的 · 送给最爱我的家人</p>
+    </div>
+  </section>
+
+  <!-- ========== 底部：孔明灯 ========== -->
+  <footer class="foot">
+    <div class="lantern" style="left:14%;animation-duration:11s;animation-delay:0s"></div>
+    <div class="lantern" style="left:34%;animation-duration:14s;animation-delay:3s;transform:scale(.85)"></div>
+    <div class="lantern" style="left:55%;animation-duration:12s;animation-delay:6s;transform:scale(1.1)"></div>
+    <div class="lantern" style="left:76%;animation-duration:16s;animation-delay:1.5s;transform:scale(.9)"></div>
+    <div class="lantern" style="left:90%;animation-duration:13s;animation-delay:8s;transform:scale(.75)"></div>
+    <p class="last-line">月亮代表我的心</p>
+  </footer>
+
+  <div class="toast" id="toast">心意已收到！祝您中秋快乐，身体健康，阖家团圆。</div>
+  <div class="rise-lantern" id="riseLantern"></div>
+
+<script>
+(function () {
+  'use strict';
+  // 滚动渐显
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function (el) { io.observe(el); });
+  } else {
+    els.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  // 收下心意：toast + 一盏孔明灯升起
+  var btn = document.getElementById('wishBtn');
+  var toast = document.getElementById('toast');
+  var rise = document.getElementById('riseLantern');
+  var tmr = null;
+  btn.addEventListener('click', function () {
+    toast.classList.add('show');
+    rise.classList.remove('go');
+    void rise.offsetWidth;
+    rise.classList.add('go');
+    if (tmr) clearTimeout(tmr);
+    tmr = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+  });
+
+  // 祈福：每点一次，升起一盏写着祝福的灯
+  var stage = document.getElementById('lanternStage');
+  var lanternBtn = document.getElementById('lanternBtn');
+  var wishes = ['健康长寿', '阖家团圆', '平安喜乐', '事事如意', '幸福美满', '岁岁常相见'];
+  var wi = 0;
+  lanternBtn.addEventListener('click', function () {
+    var l = document.createElement('div');
+    l.className = 'wish-lantern';
+    l.textContent = wishes[wi % wishes.length];
+    wi += 1;
+    l.style.left = (34 + Math.random() * 32) + '%';
+    stage.appendChild(l);
+    setTimeout(function () { if (l.parentNode) l.parentNode.removeChild(l); }, 3800);
+  });
+})();
+</script>
+</body>
+</html>
